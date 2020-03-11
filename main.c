@@ -1,6 +1,7 @@
 #include "main.h"
 #include "serial.h"
 #include "server.h"
+#include "client.h"
 
 int main(int argc, char const *argv[])
 {
@@ -20,35 +21,29 @@ int main(int argc, char const *argv[])
     Serial(&TobeConfig);
 
 	//如果是客户端模式
-	if (strcmp(TobeConfig.mode, "client") == 0)
+	if (strncmp(TobeConfig.mode, "client", 6) == 0
+		||	strncmp(TobeConfig.mode, "CLIENT", 6) == 0 )
 	{
-		//获取主中心与副中心的端口号、地址
-		//get_client_opt();
-		//获取登录所需要的配置
-		//get_login_opt();
-		//获取心跳所需要的配置
-		//get_heartbeat_opt();
-		//获取应答时间
-		//get_acktime_opt();
-		//获取重连时间
-		//get_reconntime_opt();
-
 		//创建主副客户端
-		/*
+		
         while(1)
 		{
-			create_main_client();
+			//标志位置1,说明是主连接
+			TobeConfig.clientflag = 1;
+			CreateMainClient(&TobeConfig);
+			
+			//RELINK_IN(reconn.time);
 
-			RELINK_IN(reconn.time);
-
-			create_assist_client();
-
-			RELINK_IN(reconn.time);
+			//标志位置0,说明书副连接
+			TobeConfig.clientflag = 0;
+			CreateBackupClient(&TobeConfig);
+			//RELINK_IN(reconn.time);
 		}
-        */
+        
 	}
 	//如果是服务端模式
-	else if (strcmp(TobeConfig.mode, "server") == 0)
+	else if (strncmp(TobeConfig.mode, "server", 6) == 0
+		||	strncmp(TobeConfig.mode, "SERVER", 6) == 0)
 	{
 		while(1)
 		{

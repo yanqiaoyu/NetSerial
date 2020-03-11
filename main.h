@@ -33,7 +33,7 @@
 struct TobeConfig
 {
 	//波特率
-	char baud[12];
+	char baud[8];
 	//数据位
 	char data[2];
 	//校验位
@@ -51,6 +51,18 @@ struct TobeConfig
 	char port[8];
 	//协议
 	char protocol[8];
+	//server的IP地址,或者域名
+	char serverIP[64];
+	//备份端口号
+	char bk_port[8];
+	//备份IP
+	char bk_IP[64];
+	//备份协议
+	char bk_protocol[8];
+	//主副连接标志位
+	int clientflag;
+	//超时时间
+	char acktime[8];
 
 	//数据长度
 	char packetlength[16];

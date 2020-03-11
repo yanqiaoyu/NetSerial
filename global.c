@@ -77,8 +77,15 @@ void Init(struct TobeConfig *TobeConfig)
 	GetProfileString(CONFIG_PATH, "NetWork", "mode", TobeConfig->mode);
 	GetProfileString(CONFIG_PATH, "NetWork", "port", TobeConfig->port);
 	GetProfileString(CONFIG_PATH, "NetWork", "protocol", TobeConfig->protocol);
+	GetProfileString(CONFIG_PATH, "NetWork", "IP", TobeConfig->serverIP);
 
-	printf("NetworkConf:%s %s %s\n", TobeConfig->mode, TobeConfig->port, TobeConfig->protocol);
+	GetProfileString(CONFIG_PATH, "NetWork", "bk_port", TobeConfig->bk_port);
+	GetProfileString(CONFIG_PATH, "NetWork", "bk_protocol", TobeConfig->bk_protocol);
+	GetProfileString(CONFIG_PATH, "NetWork", "bk_IP", TobeConfig->bk_IP);
+
+	printf("NetworkConf:%s %s %s %s\n", TobeConfig->mode, TobeConfig->port, TobeConfig->protocol, TobeConfig->serverIP);
+	printf("NetworkConf:%s %s %s\n", TobeConfig->bk_port, TobeConfig->bk_protocol, TobeConfig->bk_IP);
+
 
 	//收集数据配置
 	GetProfileString(CONFIG_PATH, "Data", "packetlength", TobeConfig->packetlength);
