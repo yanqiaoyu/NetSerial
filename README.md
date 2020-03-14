@@ -55,7 +55,7 @@ protocol=tcp
 IP=192.168.0.183
 ```
 配置完成后，在另一台设备上开好一个TCP Server，这台设备的IP地址应与配置中IP一致
-![](img/6.png)
+img6
 
 启动NetSerial
 ```
