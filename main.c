@@ -32,12 +32,12 @@ int main(int argc, char const *argv[])
 			TobeConfig.clientflag = 1;
 			CreateMainClient(&TobeConfig);
 			
-			//RELINK_IN(reconn.time);
+			RELINK_IN(atoi(TobeConfig.reconnecttime));
 
-			//标志位置0,说明书副连接
+			//标志位置0,说明是副连接
 			TobeConfig.clientflag = 0;
 			CreateBackupClient(&TobeConfig);
-			//RELINK_IN(reconn.time);
+			RELINK_IN(atoi(TobeConfig.reconnecttime));
 		}
         
 	}

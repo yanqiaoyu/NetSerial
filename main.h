@@ -27,7 +27,7 @@
 #include <pthread.h>
 #include <sys/ioctl.h>
 #include <netinet/tcp.h>
-//#include <sys/epoll.h>
+#include <sys/epoll.h>
 
 //关于串口的一些设置
 struct TobeConfig
@@ -62,7 +62,13 @@ struct TobeConfig
 	//主副连接标志位
 	int clientflag;
 	//超时时间
-	char acktime[8];
+	char timeout[8];
+	//心跳间隔
+	char heartbeattime[8];
+	//心跳包内容
+	char heartbeatbuf[64];
+	//重连时间
+	char reconnecttime[8];
 
 	//数据长度
 	char packetlength[16];
@@ -93,5 +99,8 @@ int GetProfileString(char *profile, char *AppName, char *KeyName, char *KeyVal);
 
 //自己重新复写了strncat，主要原因是既有的函数无法无差别复制串口过来的特殊字符
 char * my_strncat(char *dst,const char *src,size_t count, int dst_len);
+
+//重连等待函数
+void RELINK_IN(int reconn_time);
 
 #endif

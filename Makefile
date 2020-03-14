@@ -6,10 +6,10 @@ ObjFiles=$(patsubst %.c,%.o,$(SrcFiles))
 all:NetSerial
 #目标文件依赖于.o文件
 NetSerial:$(ObjFiles)
-	gcc -g -o $@ -I ./ $(SrcFiles) -ldl -lpthread
+	gcc -g -o $@ -I ./ $(SrcFiles) -ldl -lpthread -lgcc_s
 #.o文件依赖于.cpp文件，通配使用，一条就够
 %.o:%.c
-	gcc -g -c -I ./ $< -ldl -lpthread
+	gcc -g -c -I ./ $< -ldl -lpthread -lgcc_s
 
 .PHONY:clean all
 

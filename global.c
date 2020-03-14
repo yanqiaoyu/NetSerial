@@ -83,6 +83,12 @@ void Init(struct TobeConfig *TobeConfig)
 	GetProfileString(CONFIG_PATH, "NetWork", "bk_protocol", TobeConfig->bk_protocol);
 	GetProfileString(CONFIG_PATH, "NetWork", "bk_IP", TobeConfig->bk_IP);
 
+	GetProfileString(CONFIG_PATH, "NetWork", "timeout", TobeConfig->timeout);
+	GetProfileString(CONFIG_PATH, "NetWork", "reconnecttime", TobeConfig->reconnecttime);
+
+	GetProfileString(CONFIG_PATH, "NetWork", "heartbeattime", TobeConfig->heartbeattime);
+	GetProfileString(CONFIG_PATH, "NetWork", "heartbeatbuf", TobeConfig->heartbeatbuf);	
+
 	printf("NetworkConf:%s %s %s %s\n", TobeConfig->mode, TobeConfig->port, TobeConfig->protocol, TobeConfig->serverIP);
 	printf("NetworkConf:%s %s %s\n", TobeConfig->bk_port, TobeConfig->bk_protocol, TobeConfig->bk_IP);
 
@@ -269,5 +275,17 @@ char * my_strncat(char *dst,const char *src,size_t count, int dst_len)
     }
 
     return ( dst );
+}
+
+void RELINK_IN(int reconn_time)
+{
+    while(reconn_time)
+    {
+        printf("Trying to reconnect in %d's\r", reconn_time);
+        reconn_time--;
+        fflush(stdout);
+        printf("                            \r");
+        sleep(1);
+    }
 }
 
